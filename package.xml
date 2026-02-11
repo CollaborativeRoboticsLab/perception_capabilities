@@ -9,10 +9,49 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <depend>rclcpp</depend>
+  <depend>rclcpp_action</depend>
+  <depend>pluginlib</depend>
+  <depend>perception_msgs</depend>
+  <depend>capabilities2_msgs</depend>
+  <depend>capabilities2_runner</depend>
+  <depend>event_logger</depend>
+  <depend>event_logger_msgs</depend>
+  <depend>tinyxml2_vendor</depend>
+
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
+
+    <!-- WaypointRunner -->
+    <capability_interface>
+      interfaces/WaypointRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/WaypointRunner.yaml
+    </capability_provider>
+
+    <!-- RobotPoseRunner -->
+    <capability_interface>
+      interfaces/RobotPoseRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/RobotPoseRunner.yaml
+    </capability_provider>
+
+    <!-- Nav2LaunchRunner -->
+    <!-- <capability_interface>
+      interfaces/Nav2LaunchRunner.yaml
+    </capability_interface> -->
+
+    <!-- <capability_provider>
+      providers/Nav2LaunchRunner.yaml
+    </capability_provider> -->
+
+
   </export>
 </package>
