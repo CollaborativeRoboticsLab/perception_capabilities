@@ -1,12 +1,7 @@
 <library path="perception_capabilities">
-    <class type="capabilities2_runner::RobotPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
+    <class type="capabilities2_runner::TranscribeRunner" base_class_type="capabilities2_runner::RunnerBase">
         <description>
-            A plugin that provide robot pose extraction capability
-        </description>
-    </class>
-    <class type="capabilities2_runner::WayPointRunner" base_class_type="capabilities2_runner::RunnerBase">
-        <description>
-            A plugin that provide nav2 waypoint navigation capability
+            A plugin that provide transcription capability
         </description>
     </class>
 </library>

@@ -24,33 +24,14 @@
   <export>
     <build_type>ament_cmake</build_type>
 
-    <!-- WaypointRunner -->
+    <!-- TranscribeRunner -->
     <capability_interface>
-      interfaces/WaypointRunner.yaml
+      interfaces/TranscribeRunner.yaml
     </capability_interface>
 
     <capability_provider>
-      providers/WaypointRunner.yaml
+      providers/TranscribeRunner.yaml
     </capability_provider>
-
-    <!-- RobotPoseRunner -->
-    <capability_interface>
-      interfaces/RobotPoseRunner.yaml
-    </capability_interface>
-
-    <capability_provider>
-      providers/RobotPoseRunner.yaml
-    </capability_provider>
-
-    <!-- Nav2LaunchRunner -->
-    <!-- <capability_interface>
-      interfaces/Nav2LaunchRunner.yaml
-    </capability_interface> -->
-
-    <!-- <capability_provider>
-      providers/Nav2LaunchRunner.yaml
-    </capability_provider> -->
-
 
   </export>
 </package>
