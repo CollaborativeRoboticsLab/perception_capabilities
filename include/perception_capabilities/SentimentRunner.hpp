@@ -2,21 +2,21 @@
 #include <string>
 #include <pluginlib/class_list_macros.hpp>
 #include <capabilities2_runner/service_runner.hpp>
-#include <perception_msgs/srv/perception_transcribe.hpp>
+#include <perception_msgs/srv/perception_sentiment.hpp>
 
 namespace capabilities2_runner
 {
 /**
- * @brief transcribe runner
+ * @brief sentiment runner
  *
  * This class is a wrapper around the capabilities2 service runner and is used to
- * call on the /perception/transcribe service, providing it as a
- * capability that handles the transcription of perception data
+ * call on the /perception/sentiment_analysis service, providing it as a
+ * capability that handles the sentiment analysis of speech data
  */
-class TranscribeRunner : public ServiceRunner<perception_msgs::srv::PerceptionTranscribe>
+class SentimentRunner : public ServiceRunner<perception_msgs::srv::PerceptionSentiment>
 {
 public:
-  TranscribeRunner() : ServiceRunner()
+  SentimentRunner() : ServiceRunner()
   {
   }
 
@@ -28,7 +28,7 @@ public:
    */
   virtual void start(rclcpp::Node::SharedPtr node, const runner_opts& run_config, const std::string& bond_id) override
   {
-    init_service(node, run_config, "/perception/transcription");
+    init_service(node, run_config, "/perception/sentiment_analysis");
 
     // emit start event
     emit_started(bond_id, "", param_on_started());
@@ -39,12 +39,12 @@ protected:
    * @brief generate a service request from the event parameters provided in the trigger function
    * 
    * @param parameters EventParameters containing parameters for the trigger event
-   * @return PerceptionTranscribe::Request the service request to be sent to the service server
+   * @return PerceptionSentiment::Request the service request to be sent to the service server
    */
-  virtual typename perception_msgs::srv::PerceptionTranscribe::Request
+  virtual typename perception_msgs::srv::PerceptionSentiment::Request
   generate_request(capabilities2_events::EventParameters& parameters) override
   {
-    perception_msgs::srv::PerceptionTranscribe::Request request;
+    perception_msgs::srv::PerceptionSentiment::Request request;
 
     request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device_audio", true));
     request.device_buffer_time = std::any_cast<int>(parameters.get_value("device_buffer_time", 15));
@@ -57,16 +57,15 @@ protected:
    * 
    * @param response the response received from the service server after sending a request
    */
-  virtual void process_response(typename perception_msgs::srv::PerceptionTranscribe::Response::SharedPtr response) override
+  virtual void process_response(typename perception_msgs::srv::PerceptionSentiment::Response::SharedPtr response) override
   {
-    // emit success event with transcribed text as parameter
     if (!response)
     {
-      RCLCPP_ERROR(node_->get_logger(), "Transcription response was null");
+      RCLCPP_ERROR(node_->get_logger(), "Sentiment response was null");
       return;
     }
 
-    RCLCPP_INFO(node_->get_logger(), "Transcription result: %s", response->transcription.c_str());
+    RCLCPP_INFO(node_->get_logger(), "Sentiment label: '%s' (score: %.3f)", response->label.c_str(), response->score);
   }
 
   virtual capabilities2_events::EventParameters param_on_success() override
@@ -76,10 +75,10 @@ protected:
     if (!response_)
       return params;
 
-    std::string transcription_result = "Transcription success: " + std::string(response_->success ? "true" : "false") + " and the result: " + response_->transcription;
+    std::string sentiment_result = "Sentiment analysis result: " + response_->label + " (score: " + std::to_string(response_->score) + ")";
     
-    params.set_value("text", transcription_result, capabilities2_events::OptionType::STRING);
-    
+    params.set_value("text", sentiment_result, capabilities2_events::OptionType::STRING);
+
     return params;
   }
 };

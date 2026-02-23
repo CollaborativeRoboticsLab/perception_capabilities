@@ -33,5 +33,32 @@
       providers/TranscribeRunner.yaml
     </capability_provider>
 
+    <!-- SpeechRunner -->
+    <capability_interface>
+      interfaces/SpeechRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/SpeechRunner.yaml
+    </capability_provider>
+
+    <!-- SentimentRunner -->
+    <capability_interface>
+      interfaces/SentimentRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/SentimentRunner.yaml
+    </capability_provider>
+
+    <!-- ImageAnalysisRunner -->
+    <capability_interface>
+      interfaces/ImageAnalysisRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/ImageAnalysisRunner.yaml
+    </capability_provider>
+
   </export>
 </package>

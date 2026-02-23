@@ -4,4 +4,19 @@
             A plugin that provide transcription capability
         </description>
     </class>
+    <class type="capabilities2_runner::SpeechRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that provide speech synthesis capability
+        </description>
+    </class>    
+    <class type="capabilities2_runner::SentimentRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that provide sentiment analysis capability
+        </description>
+    </class>    
+    <class type="capabilities2_runner::ImageAnalysisRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that provide image analysis capability
+        </description>
+    </class>
 </library>

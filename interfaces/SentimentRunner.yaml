@@ -1,0 +1,18 @@
+%YAML 1.1
+---
+name: SentimentRunner
+spec_version: 1.1
+spec_type: interface
+description: "This capability depends on the perception stack functionalities and allows the robot to analyze audio data for emotional content after listening to 
+              environmental sounds. This capability can be used by the decision-making authority such as an LLM to process audio inputs and identify emotional 
+              condition of a conversation. This capability can be triggered via the xml command 
+              '<Runner interface=perception_capabilities/SentimentRunner provider=perception_capabilities/SentimentRunner use_device_audio='$value' device_buffer_time='$value' />'. 
+              '$value' represents a value in the respective units. As an example 
+              '<Runner interface=perception_capabilities/SentimentRunner provider=perception_capabilities/SentimentRunner use_device_audio='true' device_buffer_time='15' /> means the 
+              robot will use device audio and buffer time of 15 seconds. capability prompt_capabilities/PromptTextRunner can be used to get label output from this capability and use 
+              it for decision making."
+interface:
+  services:
+    "/perception/sentiment_analysis":
+      type: "perception_msgs::srv::PerceptionSentiment"
+      description: "Service interface for the perception sentiment analysis capability"

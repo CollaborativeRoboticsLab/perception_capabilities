@@ -1,0 +1,17 @@
+%YAML 1.1
+---
+name: ImageAnalysisRunner
+spec_version: 1.1
+spec_type: interface
+description: "This capability depends on the perception stack functionalities and allows the robot to analyze image data for various information with a predefined prompt. This capability 
+              can be used by the decision-making authority such as an LLM to process image inputs and identify objects, scenes, or other visual elements. This capability can be triggered 
+              via the xml command '<Runner interface=perception_capabilities/ImageAnalysisRunner provider=perception_capabilities/ImageAnalysisRunner use_device_vision='$value' prompt='$value' />'. 
+              '$value' represents a value in the respective units. As an example 
+              '<Runner interface=perception_capabilities/ImageAnalysisRunner provider=perception_capabilities/ImageAnalysisRunner use_device_vision='true' prompt='Analyze this image' /> means the 
+              robot will use device vision and analyze the image with the given prompt. capability prompt_capabilities/PromptTextRunner can be used to get label output from this capability and use 
+              it for decision making."
+interface:
+  services:
+    "/perception/image_analysis":
+      type: "perception_msgs::srv::PerceptionImageAnalysis"
+      description: "Service interface for the perception image analysis capability"
