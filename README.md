@@ -13,7 +13,7 @@ Provides runners for Perception stack.
 
 ## Examples
 
-Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/CollaborativeRoboticsLab/capabilities2) and [CollaborativeRoboticsLab/perception](https://github.com/CollaborativeRoboticsLab/perception).
+Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/CollaborativeRoboticsLab/capabilities2), [CollaborativeRoboticsLab/perception](https://github.com/CollaborativeRoboticsLab/perception) and [CollaborativeRoboticsLab/prompt_tools](https://github.com/CollaborativeRoboticsLab/prompt_tools).
 
 | Example | Description |
 | ---     | ---         |
@@ -32,6 +32,12 @@ ros2 launch capabilities2_server capabilities2_server.launch.py
 export OPENAI_API_KEY=
 source install/setup.bash
 ros2 launch perception server.launch.py
+```
+
+```bash
+export OPENAI_API_KEY=
+source install/setup.bash
+ros2 launch prompt_bridge prompt_bridge.launch.py
 ```
 
 ```bash
