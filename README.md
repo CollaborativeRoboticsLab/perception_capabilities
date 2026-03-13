@@ -17,9 +17,9 @@ Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/C
 
 | Example | Description |
 | ---     | ---         |
-| [Example 1](./docs/example_1.md) | Implements moving the robot to a position and checking the environment via vision and explaining what is there |
-| [Example 2](./docs/example_2.md) | Implements moving the robot to a position and checking if there is a person and, if there is asking for the name and speaking it after returning. | 
-| [Example 3](./docs/example_3.md) | Implements moving the robot to a position and checking if there is a person and, if there is asking for the name and speaking it after returning. If there is no person, it will move to a different position. | 
+| [perception_1.xml](./plans/perception_1.xml) | In this example The LLM would need to generate a plan that moves the robot 1 meter forward, turn left and take a picture. And then try to describe what it sees. |
+| [perception_2.xml](./plans/perception_2.xml) | In this example, we define two points as point A and B as world information. The LLM would need to generate a plan or more that moves the robot To the point A and check for a person using vision or audio, then ask for the name. Then it should come back to the origin and repeat the name. | 
+| [perception_3.xml](./plans/perception_3.xml) | In this example, we define two points as point A and B as world information. The LLM would need to generate a plan or more that moves the robot To the point A and check for a person using vision or audio, then ask for the name. Then it should come back to the origin and repeat the name. If the person is not there, the robot is supposed to Go to point B instead. | 
 
 To run the examples, first make sure that the robot is running and then on seperate terminals run,
 
