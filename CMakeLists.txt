@@ -61,6 +61,14 @@ install(DIRECTORY providers
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY plans
+  DESTINATION share/${PROJECT_NAME}
+)
+
 
 ament_export_include_directories(include)
 ament_export_libraries(${PROJECT_NAME})
