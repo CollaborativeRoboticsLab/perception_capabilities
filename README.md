@@ -37,8 +37,9 @@ ros2 launch capabilities2_server capabilities2_server.launch.py
 ```
 
 ```bash
-export OPENAI_API_KEY=
 source install/setup.bash
+export OPENAI_API_KEY=
+export HUGGINGFACE_API_KEY=
 ros2 launch perception server.launch.py
 ```
 
