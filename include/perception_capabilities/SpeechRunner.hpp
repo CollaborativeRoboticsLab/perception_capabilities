@@ -46,7 +46,7 @@ protected:
   {
     perception_msgs::srv::PerceptionSpeech::Request request;
     
-    request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device_audio", true));
+    request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device", true));
     request.input.text = std::any_cast<std::string>(parameters.get_value("text", std::string{}));
 
     return request;

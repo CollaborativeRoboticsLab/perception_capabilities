@@ -46,8 +46,9 @@ protected:
   {
     perception_msgs::srv::PerceptionSentiment::Request request;
 
-    request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device_audio", true));
-    request.device_buffer_time = std::any_cast<int>(parameters.get_value("device_buffer_time", 15));
+    request.text = std::any_cast<std::string>(parameters.get_value("text", std::string{}));
+    request.use_device_audio = false;  // not using device audio for sentiment analysis, only analyzing provided text
+    request.device_buffer_time = 0;    // not using device audio for sentiment analysis,
 
     return request;
   }
