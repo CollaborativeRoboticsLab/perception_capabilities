@@ -14,6 +14,7 @@ RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
     sudo \
     git \
+    ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     ros-${ROS_DISTRO}-vision-opencv \
     ros-${ROS_DISTRO}-cv-bridge \
     libportaudio2 \
