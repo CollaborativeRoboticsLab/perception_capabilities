@@ -15,7 +15,9 @@ RUN apt-get update && apt-get upgrade -y \
     sudo \
     git \
     curl \
+    libcurl4-openssl-dev \
     libpoco-dev \
+    nlohmann-json3-dev \
     ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     ros-${ROS_DISTRO}-vision-opencv \
     ros-${ROS_DISTRO}-cv-bridge \
@@ -23,6 +25,7 @@ RUN apt-get update && apt-get upgrade -y \
     portaudio19-dev \
     python3-pyaudio \
     alsa-utils \
+    && rm -rf /var/lib/apt/lists/* \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
