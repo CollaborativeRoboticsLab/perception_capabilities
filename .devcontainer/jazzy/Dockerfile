@@ -22,7 +22,7 @@ RUN apt-get update && apt-get upgrade -y \
     ros-${ROS_DISTRO}-vision-opencv \
     ros-${ROS_DISTRO}-cv-bridge \
     ros-${ROS_DISTRO}-image-transport \
-    ros-${ROS_DISTRO}-bondcpp
+    ros-${ROS_DISTRO}-bondcpp \
     libportaudio2 \
     portaudio19-dev \
     python3-pyaudio \
