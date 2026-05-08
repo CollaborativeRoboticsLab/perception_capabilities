@@ -1,6 +1,8 @@
 # perception_capabilities
 
-Provides runners for Perception stack and example plans shows how these can be used to interpret the surroundings of the robot and use that information for decision making. These runners are used by the LLM to gather information about the surroundings of the robot and to interpret that information.
+Provides runners for Perception stack and example plans shows how these can be used to interpret the surroundings of the robot and use that information for decision making. These runners are used by the LLM to gather information about the surroundings of the robot and to interpret that information. 
+
+The devcontainer includes the necessary dependencies to run the perception stack and the runners. For vision capabilities, the devcontainer supports the RealSense D435 camera. If you want to use any other cameras, modify the devcontainer repectively.
 
 ## Supported runners
 
@@ -28,6 +30,11 @@ Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/C
 | [perception_6.xml](./plans/perception_6.xml) | In this example, a LLM is requested to check how the day is for the user. |
 | [perception_7.xml](./plans/perception_7.xml) | In this example, a LLM is requested to check how the day is for the user and provide a summary of their mood. |
 
+For camera run,
+
+```bash
+ros2 launch realsense2_camera rs_launch.py
+```
 
 To run the examples, first make sure that the robot is running and then on seperate terminals run,
 
@@ -37,9 +44,9 @@ ros2 launch capabilities2_server capabilities2_server.launch.py
 ```
 
 ```bash
-source install/setup.bash
 export OPENAI_API_KEY=
 export HUGGINGFACE_API_KEY=
+source install/setup.bash
 ros2 launch perception server.launch.py
 ```
 

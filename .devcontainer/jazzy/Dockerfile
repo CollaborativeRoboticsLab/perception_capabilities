@@ -31,6 +31,13 @@ RUN apt-get update && apt-get upgrade -y \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
+    ros-${ROS_DISTRO}-librealsense2* \
+    ros-${ROS_DISTRO}-realsense2-* \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # Switch from root to user
 USER $USERNAME
 
@@ -44,13 +51,13 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 WORKDIR /home/ubuntu/colcon_ws/src
 
 RUN git clone https://github.com/CollaborativeRoboticsLab/capabilities2.git -b develop
-# RUN git clone https://github.com/CollaborativeRoboticsLab/fabric.git
+# RUN git clone https://github.com/CollaborativeRoboticsLab/fabric.git -b develop
 # RUN git clone https://github.com/CollaborativeRoboticsLab/fabric_capabilities.git
 # RUN git clone --recurse-submodules https://github.com/CollaborativeRoboticsLab/prompt_tools.git
 # RUN git clone https://github.com/CollaborativeRoboticsLab/prompt_capabilities.git
 # RUN git clone https://github.com/CollaborativeRoboticsLab/perception.git
 
-# git clone https://github.com/CollaborativeRoboticsLab/fabric.git
+# git clone https://github.com/CollaborativeRoboticsLab/fabric.git -b develop
 # git clone https://github.com/CollaborativeRoboticsLab/fabric_capabilities.git
 # git clone --recurse-submodules https://github.com/CollaborativeRoboticsLab/prompt_tools.git
 # git clone https://github.com/CollaborativeRoboticsLab/prompt_capabilities.git

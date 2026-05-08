@@ -1,5 +1,5 @@
 {
-  "name": "Humble base",
+  "name": "Perception Capabilities Humble base",
   "dockerFile": "Dockerfile",
   "remoteUser": "ubuntu",
   "containerEnv": {

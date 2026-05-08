@@ -1,5 +1,5 @@
 {
-  "name": "Jazzy base",
+  "name": "Perception Capabilities Jazzy base",
   "dockerFile": "Dockerfile",
   "remoteUser": "ubuntu",
   "containerEnv": {
