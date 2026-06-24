@@ -46,6 +46,9 @@ protected:
   {
     perception_msgs::srv::PerceptionImageAnalysis::Request request;
 
+    request.header.frame_id = "";
+    request.header.stamp = node_->now();
+    
     request.use_device_vision = std::any_cast<bool>(parameters.get_value("use_device", true));
     request.prompt = std::any_cast<std::string>(parameters.get_value("prompt", std::string{}));
 

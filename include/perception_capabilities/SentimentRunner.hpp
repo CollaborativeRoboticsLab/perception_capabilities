@@ -46,9 +46,12 @@ protected:
   {
     perception_msgs::srv::PerceptionSentiment::Request request;
 
+    request.header.frame_id = "";
+    request.header.stamp = node_->now();
+
     request.text = std::any_cast<std::string>(parameters.get_value("text", std::string{}));
-    request.use_device_audio = false;  // not using device audio for sentiment analysis, only analyzing provided text
-    request.device_buffer_time = 0;    // not using device audio for sentiment analysis,
+    request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device", false));
+    request.device_buffer_time = std::any_cast<int>(parameters.get_value("buffer_time", 0));
 
     return request;
   }
@@ -66,7 +69,8 @@ protected:
       return;
     }
 
-    RCLCPP_INFO(node_->get_logger(), "Sentiment label: '%s' (score: %.3f)", response->label.c_str(), response->score);
+    RCLCPP_INFO(node_->get_logger(), "Sentiment label: '%s' (score: %.3f, analyzed_text='%s')", response->label.c_str(),
+                response->score, response->analyzed_text.c_str());
   }
 
   virtual capabilities2_events::EventParameters param_on_success() override
@@ -76,9 +80,9 @@ protected:
     if (!response_)
       return params;
 
-    std::string sentiment_result = "Sentiment analysis result: " + response_->label + " (score: " + std::to_string(response_->score) + ")";
-    
-    params.set_value("text", sentiment_result, capabilities2_events::OptionType::STRING);
+    params.set_value("text", response_->label, capabilities2_events::OptionType::STRING);
+    params.set_value("score", response_->score, capabilities2_events::OptionType::DOUBLE);
+    params.set_value("analyzed_text", response_->analyzed_text, capabilities2_events::OptionType::STRING);
 
     return params;
   }

@@ -49,6 +49,9 @@ protected:
     request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device", true));
     request.device_buffer_time = std::any_cast<int>(parameters.get_value("buffer_time", 15));
 
+    request.audio.header.frame_id = "";
+    request.audio.header.stamp = node_->now();
+
     return request;
   }
 
@@ -76,9 +79,8 @@ protected:
     if (!response_)
       return params;
 
-    std::string transcription_result = "Transcription success: " + std::string(response_->success ? "true" : "false") + " and the result: " + response_->transcription;
-    
-    params.set_value("text", transcription_result, capabilities2_events::OptionType::STRING);
+    params.set_value("text", response_->transcription, capabilities2_events::OptionType::STRING);
+    params.set_value("success", response_->success, capabilities2_events::OptionType::BOOL);
     
     return params;
   }

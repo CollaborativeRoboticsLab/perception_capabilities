@@ -47,7 +47,13 @@ protected:
     perception_msgs::srv::PerceptionSpeech::Request request;
     
     request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device", true));
+    
+    request.input.header.frame_id = "";
+    request.input.header.stamp = node_->now();
+
     request.input.text = std::any_cast<std::string>(parameters.get_value("text", std::string{}));
+    request.input.voice = std::any_cast<std::string>(parameters.get_value("voice", std::string{}));
+    request.input.instructions = std::any_cast<std::string>(parameters.get_value("instructions", std::string{}));
 
     return request;
   }
@@ -68,12 +74,25 @@ protected:
 
     if (response->success)
     {
-      RCLCPP_INFO(node_->get_logger(), "Speech synthesis successful");
+      RCLCPP_INFO(node_->get_logger(), "Speech synthesis successful (samples=%zu, sample_rate=%d, channels=%d)",
+                  response->audio.samples.size(), response->audio.sample_rate, response->audio.channels);
     }
     else
     {
       RCLCPP_ERROR(node_->get_logger(), "Speech synthesis failed.");
     }
+  }
+
+  virtual capabilities2_events::EventParameters param_on_success() override
+  {
+    capabilities2_events::EventParameters params;
+
+    if (!response_)
+      return params;
+
+    params.set_value("success", response_->success, capabilities2_events::OptionType::BOOL);
+
+    return params;
   }
 };
 
