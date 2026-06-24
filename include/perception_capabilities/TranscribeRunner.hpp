@@ -47,10 +47,7 @@ protected:
     perception_msgs::srv::PerceptionTranscribe::Request request;
 
     request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device", true));
-    request.device_buffer_time = std::any_cast<int>(parameters.get_value("buffer_time", 15));
-
-    request.audio.header.frame_id = "";
-    request.audio.header.stamp = node_->now();
+    request.device_buffer_time = std::any_cast<int>(parameters.get_value("buffer_time", 10));
 
     return request;
   }

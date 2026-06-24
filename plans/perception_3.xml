@@ -2,6 +2,6 @@
 <Plan>
     <Control type="sequential" >
         <Runner interface="perception_capabilities/SpeechRunner" provider="perception_capabilities/SpeechRunner" use_device='true' text='"Hello, how are you? This is a Perception capability test."' />
-        <Runner interface="perception_capabilities/TranscribeRunner" provider="perception_capabilities/TranscribeRunner" use_device='true' buffer_time='15' />
+        <Runner interface="perception_capabilities/TranscribeRunner" provider="perception_capabilities/TranscribeRunner" use_device='true' buffer_time='10' />
     </Control>
 </Plan>
