@@ -29,6 +29,13 @@ RUN apt-get update && apt-get upgrade -y \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
+# Create runtime directories for forwarded GUI/audio sockets
+RUN mkdir -p /run/user/$USER_UID/pulse \
+    && chown -R $USER_UID:$USER_GID /run/user/$USER_UID \
+    && chmod 700 /run/user/$USER_UID \
+    && chmod 700 /run/user/$USER_UID/pulse
+
+
 # Switch from root to user
 USER $USERNAME
 

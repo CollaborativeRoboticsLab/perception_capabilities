@@ -3,11 +3,14 @@
   "dockerFile": "Dockerfile",
   "remoteUser": "ubuntu",
   "containerEnv": {
-    "DISPLAY": "${localEnv:DISPLAY}"
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}",
+    "PULSE_SERVER": "unix:${localEnv:XDG_RUNTIME_DIR}/pulse/native"
   },
   "runArgs": [
     "--privileged",
-    "--network=host"
+    "--network=host",
+    "--device=/dev/snd"
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/ubuntu/colcon_ws/src/${localWorkspaceFolderBasename},type=bind",
   "workspaceFolder": "/home/ubuntu/colcon_ws",
