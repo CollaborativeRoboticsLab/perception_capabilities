@@ -51,7 +51,7 @@ protected:
 
     request.text = std::any_cast<std::string>(parameters.get_value("text", std::string{}));
     request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device", false));
-    request.device_buffer_time = std::any_cast<int>(parameters.get_value("buffer_time", 0));
+    request.audio_request_window = std::any_cast<int>(parameters.get_value("audio_request_window", 0));
 
     return request;
   }

@@ -37,7 +37,7 @@ Input Parameters:
 | Parameter Name    | Type   | Description |
 | ---               | ---    | ---         |
 | use_device        | bool   | Whether to use the device's audio capabilities. |
-| buffer_time       | int    | The duration of the audio buffer in seconds. |
+| audio_request_window | int | The duration of the requested device-audio window in seconds. |
 
 Output Parameters:
 

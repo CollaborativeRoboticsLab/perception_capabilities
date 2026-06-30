@@ -8,7 +8,7 @@ description: "This capability depends on the perception stack functionalities an
               '<Runner interface=perception_capabilities/SentimentRunner provider=perception_capabilities/SentimentRunner text='$value' />'. '$value' represents the text input to be 
               analyzed. As an example '<Runner interface=perception_capabilities/SentimentRunner provider=perception_capabilities/SentimentRunner text='Hello, how are you?' /> means the 
               robot will analyze the sentiment of the provided text. capability prompt_capabilities/PromptTextRunner can be used to get label output from this capability and use 
-              it for decision making. Also <Runner interface=perception_capabilities/TranscribeRunner provider=perception_capabilities/TranscribeRunner use_device='true' buffer_time='15' /> 
+              it for decision making. Also <Runner interface=perception_capabilities/TranscribeRunner provider=perception_capabilities/TranscribeRunner use_device='true' audio_request_window='15' /> 
               can be used to get the text transcription of an audio input and then the output can be fed to this SentimentRunner capability to get the sentiment analysis of the audio input."
 interface:
   services:
