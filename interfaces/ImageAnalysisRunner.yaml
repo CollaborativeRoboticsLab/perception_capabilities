@@ -9,7 +9,7 @@ description: "This capability depends on the perception stack functionalities an
               '$value' represents a value in the respective units. As an example 
               '<Runner interface=perception_capabilities/ImageAnalysisRunner provider=perception_capabilities/ImageAnalysisRunner use_device='true' prompt='Analyze this image' /> means the 
               robot will use device vision and analyze the image with the given prompt. capability prompt_capabilities/PromptTextRunner can be used to get label output from this capability 
-              and use it for decision making. Also capability perception_capabilities/SpeechRunner can be used to output the text as speech"
+              and use it for decision making. Capability perception_capabilities/SpeechRunner can be used to get label output from this capability and output the text as speech explantion"
 interface:
   services:
     "/perception/image_analysis":

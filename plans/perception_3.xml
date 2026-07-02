@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Plan>
     <Control type="sequential" >
-        <Runner interface="perception_capabilities/SpeechRunner" provider="perception_capabilities/SpeechRunner" use_device='true' text='"Hello, how are you? This is a Perception capability test."' />
-        <Runner interface="perception_capabilities/TranscribeRunner" provider="perception_capabilities/TranscribeRunner" use_device='true' audio_request_window='10' />
+        <Runner interface="perception_capabilities/SpeechRunner" provider="perception_capabilities/SpeechRunner" use_device="true" text="Hello, how are you?" />
+        <Runner interface="perception_capabilities/TranscribeRunner" provider="perception_capabilities/TranscribeRunner" use_device="true" audio_request_window="10" />
     </Control>
 </Plan>
