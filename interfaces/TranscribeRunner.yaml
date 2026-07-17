@@ -3,14 +3,12 @@
 name: TranscribeRunner
 spec_version: 1.1
 spec_type: interface
-description: "This capability depends on the perception stack functionalities and allows the robot to transcribe audio data after listening to environmental sounds. This capability 
-              can be used by the decision-making authority such as an LLM to process audio inputs and generate textual outputs. This capability can be triggered via the xml command 
-              '<Runner interface=perception_capabilities/TranscribeRunner provider=perception_capabilities/TranscribeRunner use_device='$value' audio_request_window='$value' />'. 
-              '$value' represents a value in the respective units. As an example 
-              '<Runner interface=perception_capabilities/TranscribeRunner provider=perception_capabilities/TranscribeRunner use_device='true' audio_request_window='15' /> means the 
-              robot will use device audio and request a 15 second audio window. This is best for question and answer scenarios. audio_request_window might have to be modified to suit
-               different use cases and expected answers.The capability prompt_capabilities/PromptTextRunner can be used to get textual output from this capability and 
-              use it for decision making."
+description: "This capability depends on the perception stack functionalities and allows the robot to transcribe audio data after listening to environmental sounds. This capability
+              can be used by the decision-making authority such as an LLM to process audio inputs and generate textual outputs. This capability can be triggered via the xml command
+              '<Runner interface=perception_capabilities/TranscribeRunner provider=perception_capabilities/TranscribeRunner use_device='$value' audio_request_window='$value' />'.
+              As an example '<Runner interface=perception_capabilities/TranscribeRunner provider=perception_capabilities/TranscribeRunner use_device='true' audio_request_window='15' />'
+              means the robot will use device audio and request a 15 second audio window. This is best for question and answer scenarios. On success, the runner emits both the
+              transcribed `text` and a boolean `success` output that can be consumed by downstream runners."
 interface:
   services:
     "/perception/transcription":
