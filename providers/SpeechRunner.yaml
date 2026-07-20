@@ -5,5 +5,5 @@ name: SpeechRunner
 spec_type: provider
 spec_version: 1.1
 description: "The capability provider for the speech interface"
-implements: perception_capabilities/SpeechRunner
+implements: fp_perception_capabilities/SpeechRunner
 runner: capabilities2_runner::SpeechRunner

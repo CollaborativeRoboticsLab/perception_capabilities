@@ -5,5 +5,5 @@ name: TranscribeRunner
 spec_type: provider
 spec_version: 1.1
 description: "The capability provider for the transcribe interface"
-implements: perception_capabilities/TranscribeRunner
+implements: fp_perception_capabilities/TranscribeRunner
 runner: capabilities2_runner::TranscribeRunner

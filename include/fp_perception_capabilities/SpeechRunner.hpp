@@ -2,7 +2,7 @@
 #include <string>
 #include <pluginlib/class_list_macros.hpp>
 #include <capabilities2_runner/service_runner.hpp>
-#include <perception_msgs/srv/perception_speech.hpp>
+#include <fp_perception_msgs/srv/perception_speech.hpp>
 
 namespace capabilities2_runner
 {
@@ -13,7 +13,7 @@ namespace capabilities2_runner
  * call on the /perception/speech service, providing it as a
  * capability that handles the transcription of speech data
  */
-class SpeechRunner : public ServiceRunner<perception_msgs::srv::PerceptionSpeech>
+class SpeechRunner : public ServiceRunner<fp_perception_msgs::srv::PerceptionSpeech>
 {
 public:
   SpeechRunner() : ServiceRunner()
@@ -41,10 +41,10 @@ protected:
    * @param parameters EventParameters containing parameters for the trigger event
    * @return PerceptionSpeech::Request the service request to be sent to the service server
    */
-  virtual typename perception_msgs::srv::PerceptionSpeech::Request
+  virtual typename fp_perception_msgs::srv::PerceptionSpeech::Request
   generate_request(capabilities2_events::EventParameters& parameters) override
   {
-    perception_msgs::srv::PerceptionSpeech::Request request;
+    fp_perception_msgs::srv::PerceptionSpeech::Request request;
     
     request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device", true));
     
@@ -63,7 +63,7 @@ protected:
    * 
    * @param response the response received from the service server after sending a request
    */
-  virtual void process_response(typename perception_msgs::srv::PerceptionSpeech::Response::SharedPtr response) override
+  virtual void process_response(typename fp_perception_msgs::srv::PerceptionSpeech::Response::SharedPtr response) override
   {
     // emit success event with transcribed text as parameter
     if (!response)

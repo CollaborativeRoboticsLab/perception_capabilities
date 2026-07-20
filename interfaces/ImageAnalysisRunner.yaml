@@ -5,13 +5,13 @@ spec_version: 1.1
 spec_type: interface
 description: "This capability depends on the perception stack functionalities and allows the robot to analyze image data for various information with a predefined prompt. This capability 
               can be used by the decision-making authority such as an LLM to process image inputs and identify objects, scenes, or other visual elements. This capability can be triggered 
-              via the xml command '<Runner interface=perception_capabilities/ImageAnalysisRunner provider=perception_capabilities/ImageAnalysisRunner use_device='$value' prompt='$value' />'. 
+              via the xml command '<Runner interface=fp_perception_capabilities/ImageAnalysisRunner provider=fp_perception_capabilities/ImageAnalysisRunner use_device='$value' prompt='$value' />'.
               '$value' represents a value in the respective units. As an example 
-              '<Runner interface=perception_capabilities/ImageAnalysisRunner provider=perception_capabilities/ImageAnalysisRunner use_device='true' prompt='Analyze this image' /> means the 
+              '<Runner interface=fp_perception_capabilities/ImageAnalysisRunner provider=fp_perception_capabilities/ImageAnalysisRunner use_device='true' prompt='Analyze this image' /> means the
               robot will use device vision and analyze the image with the given prompt. capability prompt_capabilities/PromptTextRunner can be used to get label output from this capability 
-              and use it for decision making. Capability perception_capabilities/SpeechRunner can be used to get label output from this capability and output the text as speech explantion"
+              and use it for decision making. Capability fp_perception_capabilities/SpeechRunner can be used to get label output from this capability and output the text as speech explantion"
 interface:
   services:
     "/perception/image_analysis":
-      type: "perception_msgs::srv::PerceptionImageAnalysis"
+      type: "fp_perception_msgs::srv::PerceptionImageAnalysis"
       description: "Service interface for the perception image analysis capability"

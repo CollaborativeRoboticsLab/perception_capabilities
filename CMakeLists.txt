@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(perception_capabilities)
+project(fp_perception_capabilities)
 
 # Default to C++17
 if(NOT CMAKE_CXX_STANDARD)
@@ -14,7 +14,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(pluginlib REQUIRED)
-find_package(perception_msgs REQUIRED)
+find_package(fp_perception_msgs REQUIRED)
 find_package(capabilities2_msgs REQUIRED)
 find_package(capabilities2_runner REQUIRED)
 find_package(capabilities2_events REQUIRED)
@@ -33,7 +33,7 @@ ament_target_dependencies(${PROJECT_NAME}
   rclcpp
   rclcpp_action
   pluginlib
-  perception_msgs
+  fp_perception_msgs
   capabilities2_msgs
   capabilities2_runner
   capabilities2_events

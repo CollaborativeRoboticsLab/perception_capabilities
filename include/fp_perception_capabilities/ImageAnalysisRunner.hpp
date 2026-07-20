@@ -2,21 +2,21 @@
 #include <string>
 #include <pluginlib/class_list_macros.hpp>
 #include <capabilities2_runner/service_runner.hpp>
-#include <perception_msgs/srv/perception_sentiment.hpp>
+#include <fp_perception_msgs/srv/perception_image_analysis.hpp>
 
 namespace capabilities2_runner
 {
 /**
- * @brief sentiment runner
+ * @brief image analysis runner
  *
  * This class is a wrapper around the capabilities2 service runner and is used to
- * call on the /perception/sentiment_analysis service, providing it as a
- * capability that handles the sentiment analysis of speech data
+ * call on the /perception/image_analysis service, providing it as a
+ * capability that handles the analysis of image data
  */
-class SentimentRunner : public ServiceRunner<perception_msgs::srv::PerceptionSentiment>
+class ImageAnalysisRunner : public ServiceRunner<fp_perception_msgs::srv::PerceptionImageAnalysis>
 {
 public:
-  SentimentRunner() : ServiceRunner()
+  ImageAnalysisRunner() : ServiceRunner()
   {
   }
 
@@ -28,7 +28,7 @@ public:
    */
   virtual void start(rclcpp::Node::SharedPtr node, const runner_opts& run_config, const std::string& bond_id) override
   {
-    init_service(node, run_config, "/perception/sentiment_analysis");
+    init_service(node, run_config, "/perception/image_analysis");
 
     // emit start event
     emit_started(bond_id, "", param_on_started());
@@ -39,19 +39,18 @@ protected:
    * @brief generate a service request from the event parameters provided in the trigger function
    * 
    * @param parameters EventParameters containing parameters for the trigger event
-   * @return PerceptionSentiment::Request the service request to be sent to the service server
+   * @return PerceptionImageAnalysis::Request the service request to be sent to the service server
    */
-  virtual typename perception_msgs::srv::PerceptionSentiment::Request
+  virtual typename fp_perception_msgs::srv::PerceptionImageAnalysis::Request
   generate_request(capabilities2_events::EventParameters& parameters) override
   {
-    perception_msgs::srv::PerceptionSentiment::Request request;
+    fp_perception_msgs::srv::PerceptionImageAnalysis::Request request;
 
     request.header.frame_id = "";
     request.header.stamp = node_->now();
-
-    request.text = std::any_cast<std::string>(parameters.get_value("text", std::string{}));
-    request.use_device_audio = std::any_cast<bool>(parameters.get_value("use_device", false));
-    request.audio_request_window = std::any_cast<int>(parameters.get_value("audio_request_window", 0));
+    
+    request.use_device_vision = std::any_cast<bool>(parameters.get_value("use_device", true));
+    request.prompt = std::any_cast<std::string>(parameters.get_value("prompt", std::string{}));
 
     return request;
   }
@@ -61,16 +60,15 @@ protected:
    * 
    * @param response the response received from the service server after sending a request
    */
-  virtual void process_response(typename perception_msgs::srv::PerceptionSentiment::Response::SharedPtr response) override
+  virtual void process_response(typename fp_perception_msgs::srv::PerceptionImageAnalysis::Response::SharedPtr response) override
   {
     if (!response)
     {
-      RCLCPP_ERROR(node_->get_logger(), "Sentiment response was null");
+      RCLCPP_ERROR(node_->get_logger(), "Image analysis response was null");
       return;
     }
 
-    RCLCPP_INFO(node_->get_logger(), "Sentiment label: '%s' (score: %.3f, analyzed_text='%s')", response->label.c_str(),
-                response->score, response->analyzed_text.c_str());
+    RCLCPP_INFO(node_->get_logger(), "Image analysis response: %s", response->response.c_str());
   }
 
   virtual capabilities2_events::EventParameters param_on_success() override
@@ -80,9 +78,9 @@ protected:
     if (!response_)
       return params;
 
-    params.set_value("text", response_->label, capabilities2_events::OptionType::STRING);
-    params.set_value("score", response_->score, capabilities2_events::OptionType::DOUBLE);
-    params.set_value("analyzed_text", response_->analyzed_text, capabilities2_events::OptionType::STRING);
+    std::string analysis_result = "Analysis of the image is: " + response_->response;
+    
+    params.set_value("text", analysis_result, capabilities2_events::OptionType::STRING);
 
     return params;
   }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Plan>
     <Control type="sequential" >
-        <Runner interface="perception_capabilities/ImageAnalysisRunner" provider="perception_capabilities/ImageAnalysisRunner" use_device='true' prompt='Analyze this image' />
+        <Runner interface="fp_perception_capabilities/ImageAnalysisRunner" provider="fp_perception_capabilities/ImageAnalysisRunner" use_device='true' prompt='Analyze this image' />
     </Control>
 </Plan>

@@ -1,4 +1,4 @@
-# perception_capabilities
+# fp_perception_capabilities
 
 Provides runners for Perception stack and example plans shows how these can be used to interpret the surroundings of the robot and use that information for decision making. These runners are used by the LLM to gather information about the surroundings of the robot and to interpret that information. 
 
@@ -18,7 +18,7 @@ For information about these runners' interfaces, please refer to [Interface Info
 
 ## Examples
 
-Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/CollaborativeRoboticsLab/capabilities2), [CollaborativeRoboticsLab/perception](https://github.com/CollaborativeRoboticsLab/perception) and [CollaborativeRoboticsLab/prompt_tools](https://github.com/CollaborativeRoboticsLab/prompt_tools).
+Examples depend on [CollaborativeRoboticsLab/capabilities2](https://github.com/CollaborativeRoboticsLab/capabilities2), [CollaborativeRoboticsLab/fp_perception](https://github.com/CollaborativeRoboticsLab/fp_perception) and [CollaborativeRoboticsLab/prompt_tools](https://github.com/CollaborativeRoboticsLab/prompt_tools).
 
 | Example | Description |
 | ---     | ---         |
@@ -47,7 +47,7 @@ ros2 launch capabilities2_server capabilities2_server.launch.py
 export OPENAI_API_KEY=
 export HUGGINGFACE_API_KEY=
 source install/setup.bash
-ros2 launch perception server.launch.py
+ros2 launch fp_perception server.launch.py
 ```
 
 ```bash
@@ -58,5 +58,5 @@ ros2 launch prompt_bridge prompt_bridge.launch.py
 
 ```bash
 source install/setup.bash
-ros2 launch perception_capabilities system.launch.py filename:=perception_1.xml
+ros2 launch fp_perception_capabilities system.launch.py filename:=perception_1.xml
 ```

@@ -1,4 +1,4 @@
-<library path="perception_capabilities">
+<library path="fp_perception_capabilities">
     <class type="capabilities2_runner::TranscribeRunner" base_class_type="capabilities2_runner::RunnerBase">
         <description>
             A plugin that provide transcription capability

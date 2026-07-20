@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Plan>
     <Control type="sequential" >
-        <Runner interface="perception_capabilities/SpeechRunner" provider="perception_capabilities/SpeechRunner" use_device="true" text="Hello, how are you?" />
+        <Runner interface="fp_perception_capabilities/SpeechRunner" provider="fp_perception_capabilities/SpeechRunner" use_device="true" text="Hello, how are you?" />
     </Control>
 </Plan>

@@ -5,5 +5,5 @@ name: ImageAnalysisRunner
 spec_type: provider
 spec_version: 1.1
 description: "The capability provider for the image analysis interface"
-implements: perception_capabilities/ImageAnalysisRunner
+implements: fp_perception_capabilities/ImageAnalysisRunner
 runner: capabilities2_runner::ImageAnalysisRunner
